@@ -48,18 +48,30 @@ public class CowMover : MonoBehaviour
     IEnumerator Walk()
     {
         transform.localEulerAngles = new Vector3(0, randomizer.RotationWalk, 0);
-        animator.SetBool("Walking", true);
+        animator.SetBool("Walk", true);
         float walkSpeed = randomizer.WalkSpeed;
         float elapsed = 0;
         float seconds = randomizer.WalkTime;
+        Vector3 forward = transform.forward;
+        body.velocity = transform.forward * walkSpeed;
         while (elapsed < seconds)
         {
+            if (cow.FlippedOnce)
+            {
+                yield break;
+            }
+            body.angularVelocity = Vector3.zero;
             elapsed += Time.deltaTime;
-            body.MovePosition(transform.position + transform.forward * walkSpeed * Time.fixedDeltaTime);
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+
+            //var pos = transform.position + forward * walkSpeed * Time.fixedDeltaTime;
+            //pos.y = transform.position.y;
+
+            //body.MovePosition(pos);
+            //body.AddRelativeForce(transform.forward * walkSpeed * Time.fixedDeltaTime, ForceMode.Impulse);
+            yield return null;
         }
 
-        animator.SetBool("Walking", false);
+        animator.SetBool("Walk", false);
     }
 
     IEnumerator WalkCycle()
@@ -68,7 +80,11 @@ public class CowMover : MonoBehaviour
         {
             if (cow.IsWinner || cow.FlippedOnce)
             {
-                animator.SetBool("Walking", false);
+                animator.SetBool("Walk", false);
+                if (cow.FlippedOnce)
+                {
+                    animator.SetBool("Flail", true);
+                }
                 yield break;
             }
             if (!walkFirst)

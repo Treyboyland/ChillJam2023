@@ -68,5 +68,5 @@ public class CowRandomizer : ScriptableObject
     [SerializeField]
     Vector2 walkSpeedRandom;
 
-    public float WalkSpeed;
+    public float WalkSpeed { get => walkSpeedRandom.Random(); }
 }

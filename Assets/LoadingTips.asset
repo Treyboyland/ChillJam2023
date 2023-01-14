@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd32152e5ce0ff9469c366609b653938, type: 3}
+  m_Name: LoadingTips
+  m_EditorClassIdentifier: 
+  text:
+  - Use the WASD or Arrow Keys to moove
+  - This is a protip
+  - 'What is a cow''s favorite place to go?
+
+
+    The moovies'
+  - The cow you are looking for behaves different than the others
+  - "Don't tip cows in real life. \n\nPlease."
+  - 'If you need to pack up your house, hire a cow.
+
+
+    They are great moovers.'
+  - If you don't find the cow in time, you will suffer udder defeat.
+  - Watch out for spot lights!
+  - Watch out for spot lights!
