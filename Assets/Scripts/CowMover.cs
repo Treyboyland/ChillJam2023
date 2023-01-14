@@ -18,17 +18,13 @@ public class CowMover : MonoBehaviour
 
     bool walkFirst;
 
+    public bool ShouldStop = false;
+
     // Start is called before the first frame update
     void Start()
     {
         walkFirst = Random.Range(0.0f, 1.0f) < .5;
         StartCoroutine(WalkCycle());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator CowWait(float seconds)
@@ -53,14 +49,19 @@ public class CowMover : MonoBehaviour
         float elapsed = 0;
         float seconds = randomizer.WalkTime;
         Vector3 forward = transform.forward;
-        body.velocity = transform.forward * walkSpeed;
+        body.velocity = forward * walkSpeed;
         while (elapsed < seconds)
         {
             if (cow.FlippedOnce)
             {
                 yield break;
             }
+            if (ShouldStop)
+            {
+                break;
+            }
             body.angularVelocity = Vector3.zero;
+            body.velocity = forward * walkSpeed;
             elapsed += Time.deltaTime;
 
             //var pos = transform.position + forward * walkSpeed * Time.fixedDeltaTime;
@@ -71,6 +72,8 @@ public class CowMover : MonoBehaviour
             yield return null;
         }
 
+        body.angularVelocity = Vector3.zero;
+        body.velocity = Vector3.zero;
         animator.SetBool("Walk", false);
     }
 

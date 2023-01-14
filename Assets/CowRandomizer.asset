@@ -27,6 +27,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 84cd11cc49560194884911cc1f921fb8, type: 2}
   - {fileID: 2100000, guid: f16df0871896ef2438c711b537244994, type: 2}
   rotationRandom: {x: 0, y: 360}
-  walkRandomTime: {x: 1, y: 20}
-  waitTime: {x: 0, y: 5}
+  walkRandomTime: {x: 1, y: 5}
+  waitTime: {x: 1, y: 20}
   walkSpeedRandom: {x: 10, y: 20}

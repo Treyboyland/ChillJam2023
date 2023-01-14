@@ -19,12 +19,13 @@ MonoBehaviour:
 
 
     The moovies'
-  - The cow you are looking for behaves different than the others
+  - 'The cow you are looking for
+
+    beef-haves different than the others'
   - "Don't tip cows in real life. \n\nPlease."
   - 'If you need to pack up your house, hire a cow.
 
 
     They are great moovers.'
   - If you don't find the cow in time, you will suffer udder defeat.
-  - Watch out for spot lights!
-  - Watch out for spot lights!
+  - Watch out for <i>spot</i> lights!
