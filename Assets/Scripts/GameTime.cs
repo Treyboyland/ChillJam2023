@@ -42,16 +42,16 @@ public class GameTime : MonoBehaviour
 
     void SetTimeFloat(float time)
     {
-        int milliseconds = (int)((time % 1) * 100);
+        int milliseconds = (int)((time % 1) * 1000);
         TimeSpan timeSpan = new TimeSpan(0, 0, 0, (int)time, milliseconds);
 
         if (timeSpan.TotalSeconds < 10)
         {
-            textBox.text = "Time: " + timeSpan.ToString("ss.f");
+            textBox.text = "Time: " + timeSpan.ToString(@"ss\.f");
         }
         else
         {
-            textBox.text = "Time: " + timeSpan.ToString("m:ss");
+            textBox.text = "Time: " + timeSpan.ToString(@"m\:ss");
         }
 
     }

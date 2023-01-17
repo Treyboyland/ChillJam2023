@@ -2379,6 +2379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraToUse: {fileID: 963194227}
   sensitivity: {x: 3, y: 3}
+  energy: {fileID: 1548381477}
 --- !u!114 &1548381476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3142,6 +3143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2056023324}
+  - component: {fileID: 2056023327}
   - component: {fileID: 2056023326}
   - component: {fileID: 2056023325}
   m_Layer: 5
@@ -3268,6 +3270,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056023323}
   m_CullTransparentMesh: 1
+--- !u!114 &2056023327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056023323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af91d521920c7f345abd14f2fc38b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 2056023325}
+  gameTimeSeconds: 90
 --- !u!1001 &3973760498249708311
 PrefabInstance:
   m_ObjectHideFlags: 0

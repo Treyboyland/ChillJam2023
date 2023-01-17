@@ -17,5 +17,6 @@ public class BackgroundMusic : MonoBehaviour
             return;
         }
         _instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

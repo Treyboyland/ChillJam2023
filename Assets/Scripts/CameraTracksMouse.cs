@@ -10,6 +10,9 @@ public class CameraTracksMouse : MonoBehaviour
     [SerializeField]
     Vector2 sensitivity;
 
+    [SerializeField]
+    PlayerEnergy energy;
+
     float pitch;
 
     // Start is called before the first frame update
@@ -22,13 +25,15 @@ public class CameraTracksMouse : MonoBehaviour
     void Update()
     {
         UpdateCamera();
-        //Debug.LogWarning("Mouse Pos: " + mousePos);
-        //var worldPos = cameraToUse.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, .1f));
-
     }
 
     void UpdateCamera()
     {
+        if (!energy.CanPerformActions)
+        {
+            return;
+        }
+
         var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         pitch -= mousePos.y * sensitivity.y;
 

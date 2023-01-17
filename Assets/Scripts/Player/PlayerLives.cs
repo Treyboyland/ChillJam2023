@@ -27,6 +27,6 @@ public class PlayerLives : MonoBehaviour
 
     public void Die()
     {
-        Debug.LogWarning("Death");
+        GameManager.Manager.OnGameLoss.Invoke(GameOverHandler.GameOverReason.NO_LIVES);
     }
 }

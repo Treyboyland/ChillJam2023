@@ -27,6 +27,7 @@ public class GameOverHandler : MonoBehaviour
 
     void SetGameOverText(GameOverReason reason)
     {
+        gameOverCanvas.gameObject.SetActive(true);
         switch (reason)
         {
             case GameOverReason.NO_LIVES:
