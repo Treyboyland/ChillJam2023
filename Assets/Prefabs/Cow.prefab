@@ -6480,6 +6480,7 @@ MonoBehaviour:
   cow: {fileID: 3564907228092193555}
   animator: {fileID: 5242553125134144478}
   randomizer: {fileID: 11400000, guid: 1104e3ce904afeb46a58897fdf86635b, type: 2}
+  ShouldStop: 0
 --- !u!1 &6610613345518832016
 GameObject:
   m_ObjectHideFlags: 0
@@ -6490,7 +6491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3836508070064119201}
   - component: {fileID: 3416257741468830262}
-  - component: {fileID: 781502030903131256}
+  - component: {fileID: 8634338182370843340}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -6610,8 +6611,8 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00004765205, y: -0.00302801, z: 0.0012895651}
     m_Extent: {x: 0.0119870175, y: 0.019606434, z: 0.02051241}
   m_DirtyAABB: 0
---- !u!65 &781502030903131256
-BoxCollider:
+--- !u!64 &8634338182370843340
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6620,9 +6621,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.023974044, y: 0.03921286, z: 0.04102482}
-  m_Center: {x: 0.00004765174, y: -0.0065874686, z: -0.00033965486}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 0e15175d85f933b4dbe28a5643b01b88, type: 3}
 --- !u!1 &6680981115722439591
 GameObject:
   m_ObjectHideFlags: 0
@@ -6847,6 +6849,7 @@ Transform:
   m_Children:
   - {fileID: 1314728276434284773}
   - {fileID: 3836508070064119201}
+  - {fileID: 1840702059249575497}
   m_Father: {fileID: 2338534583891614773}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6934,6 +6937,65 @@ Transform:
   m_Father: {fileID: 4535083759259108327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7505518335413479652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840702059249575497}
+  - component: {fileID: 8588424359442836840}
+  - component: {fileID: 7284493854096438422}
+  m_Layer: 0
+  m_Name: Cow Stopper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1840702059249575497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505518335413479652}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.679, z: 2.053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7966321507476250747}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8588424359442836840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505518335413479652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8176239, y: 2.846444, z: 2.0484033}
+  m_Center: {x: 0.0034366846, y: -0.39293706, z: 0.056892157}
+--- !u!114 &7284493854096438422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505518335413479652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa25f5c9f07da74c8ed6e5912650da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 6043269256550134922}
 --- !u!1 &7560660902042200730
 GameObject:
   m_ObjectHideFlags: 0

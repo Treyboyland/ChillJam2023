@@ -10,7 +10,8 @@ public class QuitGame : MonoBehaviour
         if (Input.GetButtonDown("Quit"))
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            //Test
+            //UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL
             //Do Nothing
 #else

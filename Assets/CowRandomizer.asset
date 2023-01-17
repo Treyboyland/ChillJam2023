@@ -16,7 +16,7 @@ MonoBehaviour:
   mass: {x: 3, y: 5}
   angularMultiplier: {x: 10, y: 20}
   xFlipVelocity: {x: -1, y: 1}
-  yFlipVelocity: {x: 7, y: 15}
+  yFlipVelocity: {x: 15, y: 20}
   zFlipVelocity: {x: -1, y: 1}
   materials:
   - {fileID: 2100000, guid: 54317255bb11e3a449b30cd4ec5f7f39, type: 2}
@@ -30,3 +30,5 @@ MonoBehaviour:
   walkRandomTime: {x: 1, y: 5}
   waitTime: {x: 1, y: 20}
   walkSpeedRandom: {x: 10, y: 20}
+  spawnBombProbability: 1
+  secondsToWaitBeforeBomb: 0.25

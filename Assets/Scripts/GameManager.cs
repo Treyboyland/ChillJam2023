@@ -10,7 +10,13 @@ public class GameManager : MonoBehaviour
     string winScene;
 
     public UnityEvent OnGameWin;
+    public UnityEvent<GameOverHandler.GameOverReason> OnGameLoss;
     public UnityEvent OnPlayMoo;
+
+    public UnityEvent<Vector3> OnSpawnBomb;
+    public UnityEvent<Vector3> OnSpawnExplosion;
+
+    public UnityEvent<bool> OnPlayerSprint;
 
     static GameManager _instance;
 
