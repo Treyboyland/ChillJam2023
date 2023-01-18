@@ -40,6 +40,11 @@ public class PlayerStatsSO : ScriptableObject
 
     public float SprintMultiplier { get => sprintMultiplier; }
 
+    [SerializeField]
+    float maxSuspicion;
+
+    public float MaxSuspicion { get => maxSuspicion; }
+
     public enum PlayerAction
     {
         FLIP,

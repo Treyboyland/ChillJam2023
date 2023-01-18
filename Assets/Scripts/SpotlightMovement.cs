@@ -9,8 +9,14 @@ public class SpotlightMovement : MonoBehaviour
 
     bool waitFirst;
 
+    static PlayerController player;
+
     private void Start()
     {
+        if (!player)
+        {
+            player = GameObject.FindObjectOfType<PlayerController>();
+        }
         waitFirst = Random.Range(0.0f, 1.0f) < 0.5f;
         StartCoroutine(Move());
     }

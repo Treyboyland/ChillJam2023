@@ -14,7 +14,6 @@ public class SpotlightTrigger : MonoBehaviour
         {
             spotlight.Light.color = spotlight.BadColor;
             //Bad sound?
-            player.TakeDamage();
         }
     }
 

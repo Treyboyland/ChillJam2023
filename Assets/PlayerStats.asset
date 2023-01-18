@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   maxLives: 3
-  maxEnergy: 25
+  maxEnergy: Infinity
   energyPerSecond: 6
   flipCost: 15
   sprintCostPerSecond: 8
   speed: 20
   sprintMultiplier: 2
+  maxSuspicion: 5

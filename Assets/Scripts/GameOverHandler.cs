@@ -14,7 +14,8 @@ public class GameOverHandler : MonoBehaviour
     public enum GameOverReason
     {
         NO_LIVES,
-        TIME_UP
+        TIME_UP,
+        SUSPICION_MAXED
     }
 
 
@@ -35,6 +36,9 @@ public class GameOverHandler : MonoBehaviour
                 break;
             case GameOverReason.TIME_UP:
                 textBox.text = "Time's up!";
+                break;
+            case GameOverReason.SUSPICION_MAXED:
+                textBox.text = "You got caught!";
                 break;
             default:
                 textBox.text = "You lost!";
