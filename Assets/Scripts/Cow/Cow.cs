@@ -20,6 +20,9 @@ public class Cow : MonoBehaviour
     OneShotAudio metalClangAudio;
 
     [SerializeField]
+    OneShotAudio tinkAudio;
+
+    [SerializeField]
     Transform flipTarget;
 
     public bool CanFlip { get; set; } = false;
@@ -87,6 +90,10 @@ public class Cow : MonoBehaviour
         if (trigger)
         {
             CanFlip = true;
+            if (IsWinner)
+            {
+                tinkAudio.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -185,6 +192,7 @@ public class Cow : MonoBehaviour
 
     IEnumerator WaitForWin()
     {
+        GameManager.Manager.OnSpawnCone.Invoke(transform.position);
         yield return new WaitForSeconds(1.5f);
         GameManager.Manager.OnGameWin.Invoke();
     }

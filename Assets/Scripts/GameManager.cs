@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent<GameOverHandler.GameOverReason> OnGameLoss;
     public UnityEvent OnPlayMoo;
 
+    public UnityEvent<Vector3> OnSpawnCone;
+
     public UnityEvent<Vector3> OnSpawnBomb;
     public UnityEvent<Vector3> OnSpawnExplosion;
 

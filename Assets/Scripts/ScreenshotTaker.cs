@@ -19,7 +19,10 @@ public class ScreenshotTaker : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_WEB_GL
+#else
         OnScreenshot();
+#endif
     }
 
     // Update is called once per frame

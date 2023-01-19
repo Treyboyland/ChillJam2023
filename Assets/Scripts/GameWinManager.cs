@@ -25,6 +25,9 @@ public class GameWinManager : MonoBehaviour
     [SerializeField]
     WinScreen winScreen;
 
+    [SerializeField]
+    WinConeController winConeController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +65,7 @@ public class GameWinManager : MonoBehaviour
         playerBody.velocity = Vector3.zero;
         playerBody.angularVelocity = Vector3.zero;
         playerBody.transform.SetParent(cowBody.transform);
+        winConeController.Cone.transform.SetParent(cowBody.transform);
 
         while (true)
         {

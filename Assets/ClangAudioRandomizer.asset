@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ClangAudioRandomizer
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 8586c6d7293eec849a89d72b716f3fe0, type: 3}
+  - {fileID: 8300000, guid: 044ebd775892bea42bf0f4b36e7445a9, type: 3}
   pitch: {x: 1, y: 1}
   volume: {x: 0.5, y: 0.5}
