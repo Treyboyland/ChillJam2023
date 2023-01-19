@@ -7,9 +7,16 @@ public class SpotlightMovement : MonoBehaviour
     [SerializeField]
     SpotlightStatsSO stats;
 
+    [SerializeField]
+    SpotlightStatsSO statsHard;
+
+
+
     bool waitFirst;
 
     static PlayerController player;
+
+    static ExplosionPool explosionPool;
 
     private void Start()
     {
@@ -17,8 +24,27 @@ public class SpotlightMovement : MonoBehaviour
         {
             player = GameObject.FindObjectOfType<PlayerController>();
         }
+        if (!explosionPool)
+        {
+            explosionPool = GameObject.FindObjectOfType<ExplosionPool>();
+        }
         waitFirst = Random.Range(0.0f, 1.0f) < 0.5f;
         StartCoroutine(Move());
+    }
+
+    SpotlightStatsSO statsToUse
+    {
+        get
+        {
+            if (explosionPool)
+            {
+                return explosionPool.AreAnyActive() ? statsHard : stats;
+            }
+            else
+            {
+                return stats;
+            }
+        }
     }
 
     SpotlightStatsSO.Directions ChooseRandomDirection()
@@ -28,19 +54,19 @@ public class SpotlightMovement : MonoBehaviour
 
         List<SpotlightStatsSO.Directions> directions = new List<SpotlightStatsSO.Directions>();
 
-        if (x - (stats.Speed * Time.deltaTime) > stats.Bounds.x)
+        if (x - (statsToUse.Speed * Time.deltaTime) > statsToUse.Bounds.x)
         {
             directions.Add(SpotlightStatsSO.Directions.LEFT);
         }
-        if (x + (stats.Speed * Time.deltaTime) < stats.Bounds.y)
+        if (x + (statsToUse.Speed * Time.deltaTime) < statsToUse.Bounds.y)
         {
             directions.Add(SpotlightStatsSO.Directions.RIGHT);
         }
-        if (z - (stats.Speed * Time.deltaTime) > stats.Bounds.z)
+        if (z - (statsToUse.Speed * Time.deltaTime) > statsToUse.Bounds.z)
         {
             directions.Add(SpotlightStatsSO.Directions.DOWN);
         }
-        if (z + (stats.Speed * Time.deltaTime) < stats.Bounds.w)
+        if (z + (statsToUse.Speed * Time.deltaTime) < statsToUse.Bounds.w)
         {
             directions.Add(SpotlightStatsSO.Directions.UP);
         }
@@ -62,17 +88,20 @@ public class SpotlightMovement : MonoBehaviour
             return ChooseRandomDirection();
         }
 
-        float x = Mathf.Max(transform.position.x - player.transform.position.x);
-        float z = Mathf.Max(transform.position.z - player.transform.position.z);
+        float x = Mathf.Abs(transform.position.x - player.transform.position.x);
+        float z = Mathf.Abs(transform.position.z - player.transform.position.z);
+
+        //Debug.LogWarning("X: " + x.ToString("N2") + " Z: " + z.ToString("N2"));
 
         if (x > z)
         {
             //TODO: Math
-            return GetDirectionToPlayer();
+
+            return transform.position.x < player.transform.position.x ? SpotlightStatsSO.Directions.RIGHT : SpotlightStatsSO.Directions.LEFT;
         }
         else
         {
-            return GetDirectionToPlayer();
+            return transform.position.z < player.transform.position.z ? SpotlightStatsSO.Directions.UP : SpotlightStatsSO.Directions.DOWN;
         }
     }
 
@@ -82,14 +111,14 @@ public class SpotlightMovement : MonoBehaviour
         {
             if (waitFirst)
             {
-                yield return new WaitForSeconds(stats.SecondsBetweenMove);
+                yield return StartCoroutine(WaitForMove(statsToUse.SecondsBetweenMove));
             }
             else
             {
                 waitFirst = true;
             }
 
-            if (stats.ShouldMoveTowardsPlayer)
+            if (statsToUse.ShouldMoveTowardsPlayer)
             {
                 yield return StartCoroutine(MoveDirectionPlayer(GetDirectionToPlayer()));
             }
@@ -100,10 +129,25 @@ public class SpotlightMovement : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForMove(float seconds)
+    {
+        float elapsed = 0;
+        var currentStats = statsToUse;
+        while (elapsed < seconds)
+        {
+            if (statsToUse == statsHard)
+            {
+                yield break;
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     IEnumerator MoveDirection(SpotlightStatsSO.Directions direction)
     {
         bool useX = direction == SpotlightStatsSO.Directions.LEFT || direction == SpotlightStatsSO.Directions.RIGHT;
-        float secondsToMove = stats.SecondsPerMove;
+        float secondsToMove = statsToUse.SecondsPerMove;
 
         float elapsed = 0;
         while (elapsed < secondsToMove)
@@ -112,13 +156,13 @@ public class SpotlightMovement : MonoBehaviour
             var pos = transform.position;
             if (useX)
             {
-                pos.x += stats.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
+                pos.x += statsToUse.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
             }
             else
             {
-                pos.z += stats.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
+                pos.z += statsToUse.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.UP ? 1 : -1);
             }
-            if (pos.x < stats.Bounds.x || pos.y > stats.Bounds.y || pos.z < stats.Bounds.z || pos.z > stats.Bounds.w)
+            if (pos.x < statsToUse.Bounds.x || pos.y > statsToUse.Bounds.y || pos.z < statsToUse.Bounds.z || pos.z > statsToUse.Bounds.w)
             {
                 yield break;
             }
@@ -128,15 +172,37 @@ public class SpotlightMovement : MonoBehaviour
         }
     }
 
-    bool WouldPassPlayer(SpotlightStatsSO.Directions direction)
+    bool WouldPassPlayer(Vector3 pos, SpotlightStatsSO.Directions direction)
     {
-        return true;
+        bool wouldPass;
+        switch (direction)
+        {
+            case SpotlightStatsSO.Directions.UP:
+                wouldPass = pos.z > player.transform.position.z;
+                break;
+            case SpotlightStatsSO.Directions.DOWN:
+                wouldPass = pos.z < player.transform.position.z;
+                break;
+            case SpotlightStatsSO.Directions.LEFT:
+                wouldPass = pos.x < player.transform.position.x;
+                break;
+            case SpotlightStatsSO.Directions.RIGHT:
+                wouldPass = pos.x > player.transform.position.x;
+                break;
+            default:
+                return true;
+        }
+
+        //Debug.LogWarning("Would pass: " + wouldPass + " Direction: " + direction);
+
+        return wouldPass;
     }
 
     IEnumerator MoveDirectionPlayer(SpotlightStatsSO.Directions direction)
     {
+        //Debug.LogWarning(direction);
         bool useX = direction == SpotlightStatsSO.Directions.LEFT || direction == SpotlightStatsSO.Directions.RIGHT;
-        float secondsToMove = stats.SecondsPerMove;
+        float secondsToMove = statsToUse.SecondsPerMove;
 
         float elapsed = 0;
         while (elapsed < secondsToMove)
@@ -145,13 +211,13 @@ public class SpotlightMovement : MonoBehaviour
             var pos = transform.position;
             if (useX)
             {
-                pos.x += stats.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
+                pos.x += statsToUse.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
             }
             else
             {
-                pos.z += stats.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.RIGHT ? 1 : -1);
+                pos.z += statsToUse.Speed * Time.deltaTime * (direction == SpotlightStatsSO.Directions.UP ? 1 : -1);
             }
-            if (pos.x < stats.Bounds.x || pos.y > stats.Bounds.y || pos.z < stats.Bounds.z || pos.z > stats.Bounds.w || false)
+            if (pos.x < statsToUse.Bounds.x || pos.y > statsToUse.Bounds.y || pos.z < statsToUse.Bounds.z || pos.z > statsToUse.Bounds.w || WouldPassPlayer(pos, direction))
             {
                 yield break;
             }

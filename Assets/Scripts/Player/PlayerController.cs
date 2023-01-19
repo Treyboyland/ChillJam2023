@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Rigidbody body;
 
+    public bool CanMove { get; set; } = true;
+
     private void FixedUpdate()
     {
-        if (energy.CanPerformActions)
+        if (energy.CanPerformActions && CanMove)
         {
             Move();
         }

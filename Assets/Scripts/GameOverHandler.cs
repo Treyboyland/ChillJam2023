@@ -32,13 +32,13 @@ public class GameOverHandler : MonoBehaviour
         switch (reason)
         {
             case GameOverReason.NO_LIVES:
-                textBox.text = "Out of Lives!";
+                textBox.text = "What did you do?!";
                 break;
             case GameOverReason.TIME_UP:
-                textBox.text = "Time's up!";
+                textBox.text = "Alright, time's up! I won’t tell them we didn't find it if you don't.";
                 break;
             case GameOverReason.SUSPICION_MAXED:
-                textBox.text = "You got caught!";
+                textBox.text = "What are you doing out there? I've got corporate on my back telling me all the humans are going crazy! Let's get out of here and move on to the next site.";
                 break;
             default:
                 textBox.text = "You lost!";

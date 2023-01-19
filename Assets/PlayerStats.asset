@@ -20,3 +20,5 @@ MonoBehaviour:
   speed: 20
   sprintMultiplier: 2
   maxSuspicion: 5
+  secondsToWaitBeforeDecreasingSuspicion: 2
+  suspicionLossPerSecond: 0.1

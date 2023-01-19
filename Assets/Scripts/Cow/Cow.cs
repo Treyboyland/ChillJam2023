@@ -17,6 +17,9 @@ public class Cow : MonoBehaviour
     OneShotAudio mooAudio;
 
     [SerializeField]
+    OneShotAudio metalClangAudio;
+
+    [SerializeField]
     Transform flipTarget;
 
     public bool CanFlip { get; set; } = false;
@@ -33,6 +36,8 @@ public class Cow : MonoBehaviour
     static PlayerEnergy tipper;
 
     public bool IsWinner { get; set; }
+
+    bool winEventFired = false;
 
     // Start is called before the first frame update
     void Start()
@@ -111,20 +116,22 @@ public class Cow : MonoBehaviour
         Vector3 angularNorm;
         //TODO: Base off player position?
 
-
-        Vector3 diff = player.transform.forward + player.transform.up;
-        
-        Vector3 velocity = randomizer.FlipVelocity;
-        
-        diff.x += velocity.x;
-        diff.y *= velocity.y;
-        diff.z *= velocity.z;
-        diff *= randomizer.FlipPower;
-
-
-        if (!IsWinner)
+        if (player != null)
         {
-            body.AddForce(diff, ForceMode.Impulse);
+            Vector3 diff = player.transform.forward + player.transform.up;
+
+            Vector3 velocity = randomizer.FlipVelocity;
+
+            diff.x += velocity.x;
+            diff.y *= velocity.y;
+            diff.z *= velocity.z;
+            diff *= randomizer.FlipPower;
+
+
+            if (!IsWinner)
+            {
+                body.AddForce(diff, ForceMode.Impulse);
+            }
         }
 
         if (player == null)
@@ -147,12 +154,26 @@ public class Cow : MonoBehaviour
         {
             mooAudio.gameObject.SetActive(true);
         }
+        if (IsWinner && !winEventFired)
+        {
+            metalClangAudio.gameObject.SetActive(true);
+        }
 
-        body.angularVelocity = angularNorm * angularMultiple;
+        if (!IsWinner || (IsWinner && !winEventFired))
+        {
+            body.angularVelocity = angularNorm * angularMultiple;
+        }
 
-        if (!IsWinner && randomizer.ShouldSpawnBomb)
+
+        if (!IsWinner && (randomizer.ShouldSpawnBomb && player != null))
         {
             StartCoroutine(BombDelay());
+        }
+
+        if (IsWinner && !winEventFired)
+        {
+            winEventFired = true;
+            StartCoroutine(WaitForWin());
         }
     }
 
@@ -160,5 +181,11 @@ public class Cow : MonoBehaviour
     {
         yield return new WaitForSeconds(randomizer.SecondsToWaitBeforeBomb);
         GameManager.Manager.OnSpawnBomb.Invoke(transform.position);
+    }
+
+    IEnumerator WaitForWin()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Manager.OnGameWin.Invoke();
     }
 }

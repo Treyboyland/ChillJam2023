@@ -72,4 +72,18 @@ public class CowSpawner : MonoPool<Cow>
         cows.Shuffle();
         cows[0].IsWinner = true;
     }
+
+    public Cow GetWinningCow()
+    {
+        var cows = GetActiveObjects();
+        foreach (var cow in cows)
+        {
+            if (cow.IsWinner)
+            {
+                return cow;
+            }
+        }
+
+        return null;
+    }
 }

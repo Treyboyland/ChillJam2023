@@ -886,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41df296a80455d46b1632ddc3ae9e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: _Scenes/Game
+  sceneToLoad: _Scenes/Tutorial
   secondsToWait: 0
   textBox: {fileID: 1913423364}
 --- !u!1 &2016180270

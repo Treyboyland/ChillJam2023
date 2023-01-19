@@ -16,16 +16,21 @@ public class GameTime : MonoBehaviour
 
     bool eventFired = false;
 
+    bool canAddTime = true;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.Manager.OnGameWin.AddListener(() => canAddTime = false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        elapsed += Time.deltaTime;
+        if (canAddTime)
+        {
+            elapsed += Time.deltaTime;
+        }
 
         if (elapsed < gameTimeSeconds)
         {
@@ -37,7 +42,6 @@ public class GameTime : MonoBehaviour
             SetTimeFloat(0);
             GameManager.Manager.OnGameLoss.Invoke(GameOverHandler.GameOverReason.TIME_UP);
         }
-
     }
 
     void SetTimeFloat(float time)

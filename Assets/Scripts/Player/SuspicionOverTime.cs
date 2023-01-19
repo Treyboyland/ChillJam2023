@@ -11,7 +11,7 @@ public class SuspicionOverTime : MonoBehaviour
 
     private void Update()
     {
-        if (currentSuspicion)
+        if (currentSuspicion && !currentSuspicion.Invincible)
         {
             currentSuspicion.CurrentSuspicion += suspicionDamage.Value * Time.deltaTime;
         }

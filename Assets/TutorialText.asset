@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd32152e5ce0ff9469c366609b653938, type: 3}
+  m_Name: TutorialText
+  m_EditorClassIdentifier: 
+  text:
+  - Okay newbie, Cow Retrieval Universal needs you to do one of those on-site thingies
+    because our cow observational unit (C.O.U.) is dorked.
+  - 'We''ll send you in but you''re on your own to find it. You know the drill. WSAD
+    to move and spacebar to flip ''em. '
+  - The last guy wasn't very sneaky and ended up putting all the earthlings on edge,
+    so do your best to avoid them.
+  - 'They''re a crazy bunch, I hear some of them have even started strapping bombs
+    to their cows. What nards! '
+  - Anyways, don't muck it up out there. We'll pull you out if you raise too much
+    suspicion.

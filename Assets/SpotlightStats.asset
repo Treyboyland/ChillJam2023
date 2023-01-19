@@ -17,3 +17,4 @@ MonoBehaviour:
   distanceFromBounds: 0
   secondsBetweenMovesRandom: {x: 5, y: 10}
   secondsPerMoveRandom: {x: 10, y: 20}
+  moveTowardsPlayerOdds: 0.7

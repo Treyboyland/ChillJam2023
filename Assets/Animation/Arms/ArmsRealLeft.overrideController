@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmsRealLeft
+  m_Controller: {fileID: 9100000, guid: 60e30381002bff54a92d3e7bd0a10ae3, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d1c397c622446274a8ffbaaccf72c6fb, type: 2}
+    m_OverrideClip: {fileID: 7709686125681325085, guid: 93552f59980df8543895cb12d664163d, type: 3}

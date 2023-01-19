@@ -20,7 +20,7 @@ public class SuspicionIncreaseBurst : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerSuspicion lives = other.gameObject.GetComponent<PlayerSuspicion>();
-        if (lives && ((singleUse && !usedOnce) || !singleUse))
+        if (lives && !lives.Invincible && ((singleUse && !usedOnce) || !singleUse))
         {
             usedOnce = true;
             lives.CurrentSuspicion += suspicionDamage.Value;

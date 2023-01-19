@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        OnGameWin.AddListener(LoadWinScreen);
+        //OnGameWin.AddListener(LoadWinScreen);
     }
 
     void LoadWinScreen()

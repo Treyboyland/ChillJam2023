@@ -8,7 +8,7 @@ public class PlayerArms : MonoBehaviour
     PlayerEnergy energy;
 
     [SerializeField]
-    Animator animator;
+    List<Animator> animators;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,10 @@ public class PlayerArms : MonoBehaviour
     {
         if (action == PlayerStatsSO.PlayerAction.FLIP)
         {
-            animator.SetTrigger("Flip");
+            foreach (var animator in animators)
+            {
+                animator.SetTrigger("Flip");
+            }
         }
     }
 }

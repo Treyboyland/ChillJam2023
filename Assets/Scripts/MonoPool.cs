@@ -59,4 +59,17 @@ public class MonoPool<T> : MonoBehaviour where T : MonoBehaviour
 
         return objs;
     }
+
+    public bool AreAnyActive()
+    {
+        foreach (var obj in pool)
+        {
+            if (obj.gameObject.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

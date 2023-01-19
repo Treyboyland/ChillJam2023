@@ -45,6 +45,16 @@ public class PlayerStatsSO : ScriptableObject
 
     public float MaxSuspicion { get => maxSuspicion; }
 
+    [SerializeField]
+    float secondsToWaitBeforeDecreasingSuspicion;
+
+    public float SecondsToWaitBeforeDecreasingSuspicion { get => secondsToWaitBeforeDecreasingSuspicion; }
+
+    [SerializeField]
+    float suspicionLossPerSecond;
+
+    public float SuspicionLossPerSecond { get => suspicionLossPerSecond; }
+
     public enum PlayerAction
     {
         FLIP,
