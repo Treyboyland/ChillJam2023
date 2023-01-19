@@ -37,6 +37,9 @@ public class CowRandomizer : ScriptableObject
     [SerializeField]
     Vector2 zFlipVelocity;
 
+    [SerializeField]
+    Vector2 flipPower;
+
     public Vector3 FlipVelocity
     {
         get
@@ -44,6 +47,8 @@ public class CowRandomizer : ScriptableObject
             return new Vector3(xFlipVelocity.Random(), yFlipVelocity.Random(), zFlipVelocity.Random());
         }
     }
+
+    public float FlipPower { get => flipPower.Random(); }
 
     [SerializeField]
     List<Material> materials;

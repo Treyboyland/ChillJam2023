@@ -16,8 +16,9 @@ MonoBehaviour:
   mass: {x: 3, y: 5}
   angularMultiplier: {x: 10, y: 20}
   xFlipVelocity: {x: -1, y: 1}
-  yFlipVelocity: {x: 15, y: 20}
-  zFlipVelocity: {x: -1, y: 1}
+  yFlipVelocity: {x: 5, y: 6}
+  zFlipVelocity: {x: 5, y: 6}
+  flipPower: {x: 10, y: 10}
   materials:
   - {fileID: 2100000, guid: 54317255bb11e3a449b30cd4ec5f7f39, type: 2}
   - {fileID: 2100000, guid: bda4104e67ebbc341bf3c3f48e71586c, type: 2}

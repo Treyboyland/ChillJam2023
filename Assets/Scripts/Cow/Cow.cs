@@ -16,6 +16,9 @@ public class Cow : MonoBehaviour
     [SerializeField]
     OneShotAudio mooAudio;
 
+    [SerializeField]
+    Transform flipTarget;
+
     public bool CanFlip { get; set; } = false;
 
     public bool FlippedOnce { get; set; } = false;
@@ -104,15 +107,33 @@ public class Cow : MonoBehaviour
     public void FlipCow()
     {
         FlippedOnce = true;
-        body.velocity = randomizer.FlipVelocity;
+
         Vector3 angularNorm;
+        //TODO: Base off player position?
+
+
+        Vector3 diff = player.transform.forward + player.transform.up;
+        
+        Vector3 velocity = randomizer.FlipVelocity;
+        
+        diff.x += velocity.x;
+        diff.y *= velocity.y;
+        diff.z *= velocity.z;
+        diff *= randomizer.FlipPower;
+
+
+        if (!IsWinner)
+        {
+            body.AddForce(diff, ForceMode.Impulse);
+        }
+
         if (player == null)
         {
             angularNorm = Random.onUnitSphere;
         }
         else
         {
-            angularNorm = (player.transform.position - transform.position).normalized;
+            angularNorm = (player.transform.position - flipTarget.position).normalized;
             if (IsWinner)
             {
                 //TODO: Rotate Over, don't flip to sky

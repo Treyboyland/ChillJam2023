@@ -39,7 +39,7 @@ public class SpotlightStatsSO : ScriptableObject
     public float SecondsPerMove { get => secondsPerMoveRandom.Random(); }
 
     [SerializeField]
-    Vector2Int moveTowardsPlayer;
+    float moveTowardsPlayerOdds;
 
-    public int MoveToPlayerCount { get => moveTowardsPlayer.Random(); }
+    public bool ShouldMoveTowardsPlayer { get => Random.Range(0.0f, 1.0f) < moveTowardsPlayerOdds; }
 }

@@ -13,6 +13,7 @@ public class SpotlightTrigger : MonoBehaviour
         if (player)
         {
             spotlight.Light.color = spotlight.BadColor;
+            spotlight.OnPlayerDetected.Invoke();
             //Bad sound?
         }
     }

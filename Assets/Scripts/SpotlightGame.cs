@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpotlightGame : MonoBehaviour
 {
@@ -19,6 +20,5 @@ public class SpotlightGame : MonoBehaviour
 
     public Light Light { get => spotlight; }
 
-
-
+    public UnityEvent OnPlayerDetected;
 }
